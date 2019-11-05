@@ -2,6 +2,8 @@ import sys
 import argparse
 from RankBasedMonteCarlo import MonteCarloKolmogorovSmirnov, MonteCarloKruskalWallis, MonteCarloKuiper, MonteCarloMannWhitney
 
+zeroOneRange = lambda x: True if x >=0 and x<=1 else False 
+
 def main():
     parser = argparse.ArgumentParser(description='Create null hypothesis distribution based on Monte Carlo simulations')
     parser.add_argument('samples', metavar='N', type=int, nargs='+', help='Group/sample sizes separated by spaces.  You must supply at least two sample sizes.')
@@ -17,6 +19,8 @@ def main():
         samples = args.samples
         observedValue = args.observedValue
         criticalValues = args.criticalValues
+        if criticalValues != None:
+            criticalValues = list(filter(zeroOneRange, criticalValues))
     else:
         sys.exit()
 
