@@ -22,19 +22,26 @@ def main():
 
     if args.KolmogorovSmirnov:
         ks = MonteCarloKolmogorovSmirnov()
+        print("Generating Kolmogorov-Smirnov null distribution")
         ks.PrintCriticalValueTable(samples, observedValue=observedValue, cvs=criticalValues) if criticalValues != None else ks.PrintCriticalValueTable(samples, observedValue=observedValue)
 
     if args.KruskalWallis:
         kw = MonteCarloKruskalWallis()
+        print("Generating Kruskal-Wallis null distribution")
         kw.PrintCriticalValueTable(samples, observedValue=observedValue, cvs=criticalValues) if criticalValues != None else kw.PrintCriticalValueTable(samples, observedValue=observedValue)
 
     if args.Kuiper:
         k = MonteCarloKuiper()
+        print("Generating Kuiper null distribution")
         k.PrintCriticalValueTable(samples, observedValue=observedValue, cvs=criticalValues) if criticalValues != None else k.PrintCriticalValueTable(samples, observedValue=observedValue)
 
     if args.MannWhitney:
         mw = MonteCarloMannWhitney()
+        print("Generating Mann-Whitney null distribution")
         mw.PrintCriticalValueTable(samples, observedValue=observedValue, cvs=criticalValues) if criticalValues != None else mw.PrintCriticalValueTable(samples, observedValue=observedValue)
+
+    if args.MannWhitney != True and args.Kuiper != True and args.KruskalWallis != True and args.KolmogorovSmirnov != True:
+        print("You didn't select an estimation routine so the program doesn't have any output.")
 
 if __name__ == "__main__":
     main()
