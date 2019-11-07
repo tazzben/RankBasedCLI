@@ -1,5 +1,6 @@
 import sys
 import argparse
+from multiprocessing import freeze_support
 from RankBasedMonteCarlo import MonteCarloKolmogorovSmirnov, MonteCarloKruskalWallis, MonteCarloKuiper, MonteCarloMannWhitney
 
 zeroOneRange = lambda x: True if x >=0 and x<=1 else False 
@@ -48,4 +49,5 @@ def main():
         print("You didn't select an estimation routine so the program doesn't have any output.")
 
 if __name__ == "__main__":
+    freeze_support()
     main()
